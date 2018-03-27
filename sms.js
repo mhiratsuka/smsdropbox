@@ -19,8 +19,8 @@ module.exports.sms = (event) => {
     client.messages.create(
         {
           to: '+16047821123',
-          from: '+16042107058 ',
-          body: 'Tthe new file ${filename} was added to your S3 bucket',
+          from: '+16042107058',
+          body: 'The new file was added to your S3 bucket',
         },
         (err, message) => {
           console.log(message.sid)
