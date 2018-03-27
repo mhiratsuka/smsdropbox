@@ -12,7 +12,7 @@ module.exports.s3fetch = (event, context, callback) => {
   const data = JSON.parse(event.body);
   
   const dbparams = {
-              TableName: 'minidropbox',
+              TableName: 'smsminidropbox',
               Item: {
                 name: data.key,
                 date: now,

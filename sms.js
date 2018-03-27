@@ -1,16 +1,30 @@
 'use strict';
 
-module.exports.hello = (event, context, callback) => {
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'Go Serverless v1.0! Your function executed successfully!',
-      input: event,
-    }),
-  };
+const AWS = require('aws-sdk');
+const s3 = new AWS.S3();
 
-  callback(null, response);
+// Twilio Credentials
+const accountSid = 'ACb63cad4d19a7166e9edbf83b7b71ca1d';
+const authToken = 'd1704ca6c77ae12f7fa722bfa6d4160';
 
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
+// require the Twilio module and create a REST client
+const client = require('twilio')(accountSid, authToken);
+
+module.exports.sms = (event) => {
+  event.Records.forEach((record) => {
+    const filename = record.s3.object.key;
+    const filesize = record.s3.object.size;
+    console.log(`New object has been created: ${filename} (${filesize} bytes)`);
+
+    client.messages.create(
+        {
+          to: '+16047821123',
+          from: '+16042107058 ',
+          body: 'Tthe new file ${filename} was added to your S3 bucket',
+        },
+        (err, message) => {
+          console.log(message.sid)
+        }
+    );
+  });
 };

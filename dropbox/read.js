@@ -3,7 +3,7 @@
 const AWS = require('aws-sdk');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 const params = {
-	TableName: 'minidropbox'
+	TableName: 'smsminidropbox'
 };
 
 module.exports.read = (event, context, callback) => {

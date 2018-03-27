@@ -12,7 +12,7 @@ const eventname = "deleted the image";
 module.exports.delete = (event, context, callback) => {
 
 	const s3params = {
-	  Bucket: "minidropboxserverless",
+	  Bucket: "smsminidropboxserverless",
 	  Key: event.pathParameters.name
 	};
 
@@ -27,7 +27,7 @@ module.exports.delete = (event, context, callback) => {
 
 	function dbDelete() {
 			const dbparams = {
-				TableName: 'minidropbox',
+				TableName: 'smsminidropbox',
 				Item: {
 					name: event.pathParameters.name,
 					date: now,
