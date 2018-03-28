@@ -4,4 +4,4 @@ jspm_packages
 package-lock.json
 
 # Serverless directories
-.serverless
+.serverlessAdded package-lock.
